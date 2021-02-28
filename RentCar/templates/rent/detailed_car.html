@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{car.brand}} {{car.model}}{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>{{car.brand}} {{car.model}}</h2>
+        <p>Год выпуска : {{car.release_year}} г</p>
+        <p>Цвет : {{car.color}}</p>
+        <p>Двигатель {{car.engine}} л / {{hp}} л.с.</p>
+        <p>Коробка {{car.gearbox}}</p>
+        <p>Стоимость {{car.price}} р/сутки</p>
+    </div>
+{% endblock %}

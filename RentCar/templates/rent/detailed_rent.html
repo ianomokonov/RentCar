@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Аренда{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Автомобиль {{rent.cars}}</h2>
+        <p>Пользователь {{rent.user}}</p>
+        <p>Аренда с {{rent.rent_from}} до {{rent.rent_till}}</p>
+        <p>Стоимость {{rent.total_price}} р/сутки</p>
+    </div>
+{% endblock %}

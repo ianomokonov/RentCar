@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Ваши аренды{% endblock %}
+
+{% block content %}
+
+    {% if rent_list %}
+<ul>
+    {% for rent in rent_list %}
+    <li><a href="{% url 'rent:rent_detailed' rent.rent_id%}">{{rent.cars}}</a></li>
+        {% endfor %}
+    {% else %}
+        Данные не найдены
+</ul>
+    {% endif %}
+
+{% endblock %}
