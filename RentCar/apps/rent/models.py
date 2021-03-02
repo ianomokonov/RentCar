@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
+
 
 class Cars(models.Model):
 
@@ -40,7 +42,7 @@ class Rent(models.Model):
 
     def save(self, *args, **kwargs):
         self.rent_date = timezone.now()
-        self.total_price = (self.rent_till - self.rent_from).days * self.cars.price
+        self.total_price = (datetime.strptime(self.rent_till , "%Y-%m-%d") - datetime.strptime(self.rent_from , "%Y-%m-%d")).days * self.cars.price
         super(Rent, self).save(*args, **kwargs)
 
     def __str__(self):

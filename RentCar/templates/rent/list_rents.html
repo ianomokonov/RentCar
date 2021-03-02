@@ -12,5 +12,7 @@
         Данные не найдены
 </ul>
     {% endif %}
-
+{% if user.is_authenticated %}
+    <a class="btn btn-success" href="{% url 'rent:add_rent' user.id%}" role="button">Добавить</a>
+{% endif %}
 {% endblock %}

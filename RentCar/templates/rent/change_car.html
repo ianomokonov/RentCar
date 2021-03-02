@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block title %}Добавление автомобиля{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-5">
+    <h2 class="mb-4">Добавление автомобиля</h2>
+    <form action="{% url 'rent:change_car' car.car_id%}" method="POST">
+        {% csrf_token %}
+
+        <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <span class="text-muted">Марка автомобиля</span>
+          <input
+            class="form-control"
+            type="text"
+            required
+            placeholder="Введите марку"
+            name="brand"
+            value="{{car.brand}}"
+          />
+        </div>
+      </div>
+        </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <span class="text-muted">Модель автомобиля</span>
+          <input
+            class="form-control"
+            type="text"
+            required
+            placeholder="Введите модель"
+            name="model"
+            value = {{car.model}}
+          />
+        </div>
+      </div>
+        </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+              <span class="text-muted">Год выпуска</span
+              ><input
+                type="number"
+                required
+                placeholder="Введите год"
+                name="release_year"
+                class="form-control"
+                value="{{ car.release_year }}"
+              />
+            </div>
+          </div>
+        </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <span class="text-muted">Цвет</span>
+          <input
+            type="text"
+            class="form-control"
+            required
+            placeholder="Введите цвет"
+            name = 'color'
+            value="{{ car.color }}"
+          />
+        </div>
+      </div>
+        </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+              <span class="text-muted">Объем двигателя</span
+              ><input
+                type="number"
+                required
+                placeholder="Введите объем двигателя"
+                name="engine"
+                class="form-control"
+                step="0.01"
+                value="{{ engine }}"
+              />
+            </div>
+          </div>
+        </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+              <span class="text-muted">Лошадиные силы</span
+              ><input
+                type="number"
+                required
+                placeholder="Введите количество сил"
+                name="hp"
+                class="form-control"
+                value="{{ car.hp }}"
+              />
+            </div>
+    </div>
+        </div>
+    <div class="col-2">
+        <div class="form-group">
+          <span class="text-muted">Коробка</span>
+              <select name="gearbox" class="form-control">
+                  {% if car.gearbox == 'АКПП'%}}
+                    <option value="МКПП">МКПП</option>
+                    <option selected value="АКПП">АКПП</option>
+                  {% else %}
+                    <option selected value="МКПП">МКПП</option>
+                    <option value="АКПП">АКПП</option>
+                  {% endif %}
+              </select>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+              <span class="text-muted">Стоимость</span
+              ><input
+                type="number"
+                required
+                placeholder="Введите стоимость"
+                name="price"
+                class="form-control"
+                value="{{ price }}"
+              />
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success" type = "submit">Изменить</button>
+    </form>
+</div>
+{% endblock %}
