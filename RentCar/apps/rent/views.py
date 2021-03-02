@@ -1,15 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cars, Rent
 from django.contrib.auth.models import User
 
 def index(request):
     return render(request, 'rent/index.html')
 
-
 def cars(request):
     cars_list = Cars.objects.order_by('brand')
     return render(request, 'rent/list_cars.html', {'cars_list': cars_list})
-
 
 def user_rents(request, user_id):
     curr_user = get_object_or_404(User, pk=user_id)

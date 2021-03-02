@@ -13,6 +13,7 @@ class Cars(models.Model):
     model = models.CharField('Модель', max_length=100)
     release_year = models.IntegerField('Год выпуска')
     color = models.CharField('Цвет', max_length=100)
+    image = models.CharField('Изображение', max_length=200, default='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Car_with_Driver-Silhouette.svg/1200px-Car_with_Driver-Silhouette.svg.png')
     engine = models.FloatField('Объем двигателя')
     hp = models.IntegerField('Лошадиные силы')
     gearbox = models.CharField('Коробка', max_length=100)

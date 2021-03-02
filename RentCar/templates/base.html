@@ -1,15 +1,44 @@
 <!doctype html>
 <html lang="ru">
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 {% block link%}{% endblock %}
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Аренда машин{% endblock %}</title>
+<script src="https://kit.fontawesome.com/3a4b557e16.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    nav{
+        background: #f1f1f1;
+    }
+    .navbar-brand{
+        text-transform: uppercase;
+        color: black !important;
+        font-weight: 700;
+    }
+    .navbar-brand > span {
+        color: #b61620;
+    }
+    .nav-link{
+        color: #b61620 !important;
+    }
+    nav h4{
+        text-transform: capitalize;
+        color: #999999;
+        font-weight: 400;
+        font-size: 18px;
+        margin-right: 1rem;
+
+    }
+    .logout{
+        font-size: 22px;
+    }
+</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'rent:index' %}">Cars4Bitches</a>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+      <a class="navbar-brand" href="{% url 'rent:cars' %}">Cars<span>4</span>Rent</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,16 +55,18 @@
         </li>
       </ul>
       {% if user.is_authenticated %}
-        <h2>Welcome, {{ user.username }}!</h2>
-        <a class="btn btn-success" href="{% url 'logout' %}" role="button">Log out</a>
+        <h4 class="mb-0">{{ user.username }}</h4>
+        <a class="btn p-0 logout" href="{% url 'logout' %}" role="button"><i class="fas fa-sign-out-alt"></i></a>
       {% else %}
-        <h2>You are not logged in.</h2>
-        <a class="btn btn-success mr-2" href="{% url 'login' %}" role="button">Log in</a>
-        <a class="btn btn-success" href="{% url 'accounts:signup' %}" role="button">Sign up</a>
+          <a class="btn logout p-0" href="{% url 'login' %}" role="button"><h4 class="mb-0">Личный кабинет</h4></a>
+        <a class="btn logout p-0" href="{% url 'login' %}" role="button"><i class="fas fa-user-tie"></i></a>
+{#        <a class="btn btn-success" href="{% url 'accounts:signup' %}" role="button">Sign up</a>#}
       {% endif %}
     </div>
   </div>
 </nav>
+<div class="container">
 {% block content%}{% endblock %}
+</div>
 </body>
 </html>

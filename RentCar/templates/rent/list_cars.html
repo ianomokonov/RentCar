@@ -2,15 +2,15 @@
 {% block title %}Автомобили{% endblock %}
 
 {% block content %}
-
+<h4 class="mt-3">Автомобили</h4>
     {% if cars_list %}
-<ul>
+<div class="d-flex flex-column py-3">
         {% for car in cars_list %}
-    <li><a href="{% url 'rent:cars_detailed' car.car_id%}">{{car.brand}} {{car.model}}</a></li>
+    <a class="w-100 p-3 border rounded" href="{% url 'rent:cars_detailed' car.car_id%}">{{car.brand}} {{car.model}}</a>
         {% endfor %}
     {% else %}
         Данные не найдены
-</ul>
+</div>
     {% endif %}
 
 {% endblock %}
