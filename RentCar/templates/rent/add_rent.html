@@ -2,22 +2,26 @@
 {% block title %}Добавление аренды{% endblock %}
 
 {% block content %}
-    <div class="container-fluid pt-5">
+    <div class="pt-5">
         <h2 class="mb-4">Добавление аренды</h2>
-        <form action="{% url 'rent:add_rent' user.id %}" method="POST">
+        <form class="row w-50" action="{% url 'rent:add_rent' user.id %}" method="POST">
             {% csrf_token %}
-            <div class="col-2">
+            <div class="col-12">
                 <div class="form-group">
           <span class="text-muted">Автомобиль</span
           ><select class="form-control" name="cars">
 
                     {% for k,v in cars_names.items %}
-                        <option value="{{ k }}">{{ v }}</option>
+                        {% if k == car_id  %}
+                            <option selected value="{{ k }}">{{ v }}</option>
+                        {% else %}
+                            <option value="{{ k }}">{{ v }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <div class="form-group">
                     <span class="text-muted">Начало аренды</span>
                     <input
@@ -29,7 +33,7 @@
                     />
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <div class="form-group">
                     <span class="text-muted">Конец аренды</span>
                     <input
@@ -41,7 +45,10 @@
                     />
                 </div>
             </div>
+        <div class="col-12">
+
             <button class="btn btn-success" type="submit">Добавить</button>
+        </div>
         </form>
     </div>
 {% endblock %}

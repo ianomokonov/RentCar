@@ -2,17 +2,26 @@
 {% block title %}Ваши аренды{% endblock %}
 
 {% block content %}
-
+    <h3 class="my-4">Ваши аренды</h3>
     {% if rent_list %}
-<ul>
+<div class="row ml-0">
     {% for rent in rent_list %}
-    <li><a href="{% url 'rent:rent_detailed' rent.rent_id%}">{{rent.cars}}</a></li>
+        <div class="col-4 mb-3 pl-0">
+        <div class="card">
+          <h5 class="card-header">{{ rent.cars }}</h5>
+          <div class="card-body">
+            <h5 class="card-title">{{rent.rent_from |date:"d.m.Y"}} — {{rent.rent_till|date:"d.m.Y"}}</h5>
+            <p class="card-text">{{rent.total_price}} р</p>
+            <form action="{% url 'rent:delete_rent' rent.rent_id user.id%}" method="POST">
+             {% csrf_token %}
+                <button class="btn btn-danger" type = "submit">Отменить</button>
+            </form>
+          </div>
+        </div>
+        </div>
         {% endfor %}
     {% else %}
-        Данные не найдены
-</ul>
+        Аренды отсутствуют
+</div>
     {% endif %}
-{% if user.is_authenticated %}
-    <a class="btn btn-success" href="{% url 'rent:add_rent' user.id%}" role="button">Добавить</a>
-{% endif %}
 {% endblock %}

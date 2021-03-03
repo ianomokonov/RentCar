@@ -33,6 +33,17 @@
     .logout{
         font-size: 22px;
     }
+
+    .list-group .car img{
+        width: 100px;
+    }
+
+    .sign-up-form{
+        width: 50%;
+      }
+      .sign-up-form input{
+        width: 100%;
+      }
 </style>
 </head>
 <body>
@@ -60,7 +71,6 @@
       {% else %}
           <a class="btn logout p-0" href="{% url 'login' %}" role="button"><h4 class="mb-0">Личный кабинет</h4></a>
         <a class="btn logout p-0" href="{% url 'login' %}" role="button"><i class="fas fa-user-tie"></i></a>
-{#        <a class="btn btn-success" href="{% url 'accounts:signup' %}" role="button">Sign up</a>#}
       {% endif %}
     </div>
   </div>

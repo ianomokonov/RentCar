@@ -2,27 +2,25 @@
 {% block title %}Добавление автомобиля{% endblock %}
 
 {% block content %}
-<div class="container-fluid pt-5">
+<div class="pt-5">
     <h2 class="mb-4">Добавление автомобиля</h2>
     <form action="{% url 'rent:add_car' %}" method="POST">
         {% csrf_token %}
 
         <div class="row">
-      <div class="col-4">
-        <div class="form-group">
-          <span class="text-muted">Марка автомобиля</span>
-          <input
-            class="form-control"
-            type="text"
-            required
-            placeholder="Введите марку"
-            name="brand"
-          />
-        </div>
-      </div>
-        </div>
-    <div class="row">
-      <div class="col-4">
+          <div class="col-4">
+            <div class="form-group">
+              <span class="text-muted">Марка автомобиля</span>
+              <input
+                class="form-control"
+                type="text"
+                required
+                placeholder="Введите марку"
+                name="brand"
+              />
+            </div>
+          </div>
+            <div class="col-4">
         <div class="form-group">
           <span class="text-muted">Модель автомобиля</span>
           <input
@@ -34,9 +32,7 @@
           />
         </div>
       </div>
-        </div>
-    <div class="row">
-        <div class="col-4">
+            <div class="col-4">
             <div class="form-group">
               <span class="text-muted">Год выпуска</span
               ><input
@@ -48,8 +44,6 @@
               />
             </div>
           </div>
-        </div>
-    <div class="row">
       <div class="col-4">
         <div class="form-group">
           <span class="text-muted">Цвет</span>
@@ -62,8 +56,6 @@
           />
         </div>
       </div>
-        </div>
-    <div class="row">
         <div class="col-4">
             <div class="form-group">
               <span class="text-muted">Объем двигателя</span
@@ -77,8 +69,6 @@
               />
             </div>
           </div>
-        </div>
-    <div class="row">
         <div class="col-4">
             <div class="form-group">
               <span class="text-muted">Лошадиные силы</span
@@ -91,17 +81,15 @@
               />
             </div>
     </div>
-        </div>
-    <div class="col-2">
+    <div class="col-4">
         <div class="form-group">
           <span class="text-muted">Коробка</span>
               <select name="gearbox" class="form-control">
-                <option value="МКПП">МКПП</option>
-                <option selected value="АКПП">АКПП</option>
+                  <option value="МКПП">МКПП</option>
+                    <option selected value="АКПП">АКПП</option>
               </select>
         </div>
       </div>
-    <div class="row">
         <div class="col-4">
             <div class="form-group">
               <span class="text-muted">Стоимость</span

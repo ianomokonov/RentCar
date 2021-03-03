@@ -2,28 +2,46 @@
 {% extends 'base.html' %}
 {% block content %}
 
+    <h2 class="py-4">Вход</h2>
 {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
+    {% csrf_token %}
 
-<tr>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</tr>
+    <div class="form-group">
+      <span class="text-muted d-block">{{ form.username.label_tag }}</span>
+      <input
+        class="form-control"
+        type="text"
+        name="username"
+        autofocus=""
+        autocapitalize="none"
+        autocomplete="username"
+        maxlength="150"
+        required=""
+        id="id_username"
+      />
+    </div>
+    <div class="form-group">
+      <span class="text-muted d-block">{{ form.password.label_tag }}</span>
+      <input
+        class="form-control"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        required=""
+        id="id_password"
+      />
+    </div>
+    <div class="d-flex">
+        <input class="btn btn-primary" type="submit" value="Войти" />
+        <a class="btn btn-link" href="{% url 'accounts:signup' %}">Регистрация</a>
+    </div>
 
-<tr>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
 
 
 {% endblock %}

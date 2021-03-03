@@ -17,17 +17,12 @@ def cars(request):
 def user_rents(request, user_id):
     curr_user = get_object_or_404(User, pk=user_id)
     linked_rents = curr_user.rent_set.all()
-    return render(request, 'rent/list_rents.html', {'rent_list': linked_rents})
+    return render(request, 'rent/list_rents.html', {'rent_list': linked_rents, 'user': curr_user})
 
 
 def cars_detailed(request, car_id):
     car = get_object_or_404(Cars, pk=car_id)
     return render(request, 'rent/detailed_car.html', {'car': car})
-
-
-def rent_detailed(request, rent_id):
-    rent = get_object_or_404(Rent, pk=rent_id)
-    return render(request, 'rent/detailed_rent.html', {'rent': rent})
 
 
 def add_car(request):
@@ -71,20 +66,7 @@ def add_rent(request, user_id):
                           rent_from=request.POST['rent_from'], rent_till=request.POST['rent_till'])
         new_meteor.save()
         return HttpResponseRedirect(reverse('rent:user_rents', args=(user_id,)))
-    return render(request, 'rent/add_rent.html', {'cars_names': cars_names})
-
-
-def change_rent(request, rent_id):
-    rent = get_object_or_404(Rent, pk=rent_id)
-    all_cars = Cars.objects.all()
-    cars_names = {a.car_id: f'{a.brand} {a.model}' for a in all_cars}
-    if request.method == "POST":
-        rent.cars = request.POST['cars']
-        rent.rent_from = request.POST['rent_from']
-        rent.rent_till = request.POST['rent_till']
-        rent.save()
-        return HttpResponseRedirect(reverse('rent:rent_detailed', args=(rent.rent_id,)))
-    return render(request, 'rent/change_rent.html', {'cars_names': cars_names, 'rent': rent })
+    return render(request, 'rent/add_rent.html', {'cars_names': cars_names, 'car_id': int(request.GET.get('carId'))})
 
 
 def delete_rent(request, rent_id , user_id):

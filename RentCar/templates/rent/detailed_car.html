@@ -3,20 +3,52 @@
 
 {% block content %}
     <div>
-        <h2>{{car.brand}} {{car.model}}</h2>
-        <p>Год выпуска : {{car.release_year}} г</p>
-        <p>Цвет : {{car.color}}</p>
-        <p>Двигатель {{car.engine}} л / {{hp}} л.с.</p>
-        <p>Коробка {{car.gearbox}}</p>
-        <p>Стоимость {{car.price}} р/сутки</p>
+        <h2 class="my-3">{{car.brand}} {{car.model}}</h2>
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="text-muted">Год выпуска</span>
+                    <h6>{{car.release_year}} г</h6>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="text-muted">Двигатель</span>
+                    <h6>{{car.engine}} л / {{hp}} л.с.</h6>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="text-muted">Цвет</span>
+                    <h6>{{car.color}}</h6>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="text-muted">Коробка</span>
+                    <h6>{{car.gearbox}}</h6>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group rounded border border-primary p-2">
+                    <span>Стоимость</span>
+                    <h6>{{car.price}} р/сутки</h6>
+                </div>
+            </div>
+        </div>
     </div>
-    {% if user.is_authenticated %}
+
     <div class="d-flex">
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary mr-2" href="{% url 'rent:add_rent' user.id%}?carId={{ car.car_id }}" role="button">Забронировать</a>
+        {% endif %}
+    {% if user.is_staff %}
          <a class="btn btn-success mr-2" href="{% url 'rent:change_car' car.car_id %}" role="button">Изменить</a>
          <form action="{% url 'rent:delete_car' car.car_id %}" method="POST">
              {% csrf_token %}
                 <button class="btn btn-danger" type = "submit">Удалить</button>
+
+    {% endif %}
          </form>
     </div>
-    {% endif %}
 {% endblock %}
